@@ -1,0 +1,110 @@
+import { useEffect, useState } from 'react'
+import { Link } from '@tanstack/react-router'
+import { createColumnHelper, useReactTable, flexRender, getCoreRowModel } from '@tanstack/react-table'
+import { getUsers, deleteUser, type User } from './userService'
+
+import { createFileRoute } from "@tanstack/react-router";
+
+export const Route = createFileRoute("/dynammic/")({
+  component: RouteComponent,
+});
+
+function UserListPage() {
+  const [data, setData] = useState<User[]>([])
+
+  useEffect(() => {
+    getUsers().then(setData)
+  }, [])
+
+  const handleDelete = async (id: number) => {
+    if (confirm('Delete this user?')) {
+      await deleteUser(id)
+      setData(await getUsers())
+    }
+  }
+
+  const columnHelper = createColumnHelper<User>()
+  const columns = [
+    columnHelper.accessor('id', {
+      header: 'ID',
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor('name', {
+      header: 'Name',
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor('email', {
+      header: 'Email',
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.display({
+      id: 'actions',
+      header: 'Actions',
+      cell: ({ row }) => {
+        const user = row.original
+        return (
+          <div className="flex gap-2">
+            <Link
+              to="/dynammic/$userId"
+              params={{ userId: user.id as unknown as string }}
+              className="text-blue-600 hover:underline"
+            >
+              View/Edit
+            </Link>
+            <button
+              onClick={() => handleDelete(user.id)}
+              className="text-red-600 hover:underline"
+            >
+              Delete
+            </button>
+          </div>
+        )
+      },
+    }),
+  ]
+
+  const table = useReactTable({
+    data,
+    columns,
+    getCoreRowModel: getCoreRowModel(),
+  })
+
+  return (
+    <div className="p-6">
+      <div className="flex justify-between items-center mb-4">
+        <h1 className="text-2xl font-semibold">User List</h1>
+        <Link
+          to="/dynammic/create"
+          className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700"
+        >
+          + Add User
+        </Link>
+      </div>
+
+      <table className="min-w-full border">
+        <thead className="bg-gray-100">
+          {table.getHeaderGroups().map((headerGroup) => (
+            <tr key={headerGroup.id}>
+              {headerGroup.headers.map((header) => (
+                <th key={header.id} className="border px-3 py-2 text-left">
+                  {flexRender(header.column.columnDef.header, header.getContext())}
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        <tbody>
+          {table.getRowModel().rows.map((row) => (
+            <tr key={row.id} className="border-t">
+              {row.getVisibleCells().map((cell) => (
+                <td key={cell.id} className="px-3 py-2 border-b">
+                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                </td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  )
+}

@@ -1,0 +1,36 @@
+networks:
+  web: { driver: bridge }
+services:
+  dev:
+    image: oven/bun:1.2
+    working_dir: /app
+    command: bun run dev --host
+    ports: ["5173:5173"]
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+    networks: [web]
+
+  staging:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports: ["8080:80"]
+    environment:
+      - APP_ENV=staging
+      - APP_API_BASE=/api
+      - APP_TEST_ENV=STAGING
+    networks: [web]
+
+  prod:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports: ["82:80"]
+    environment:
+      - APP_ENV=production
+      - APP_API_BASE=/api
+      - APP_TEST_ENV=PRODUCTION
+    networks: [web]

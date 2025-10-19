@@ -1,0 +1,10 @@
+node_modules/
+dist/
+build/
+coverage/
+.tmp/
+.tanstack/
+.vscode/
+.DS_Store
+*.log
+public/*.svg

@@ -1,0 +1,4 @@
+{
+  "pattern": "^(master|main|dev|uat|ppt|upgrade|(feature|release|bugfix|hotfix|test|chore|upgrade|fix)/(:\\d+-)?[a-zA-Z0-9\\-]+)$",
+  "errorMsg": "Branch name must be in this format: (master|main|dev|uat|ppt|upgrade|(feature|release|bugfix|hotfix|test|chore|upgrade|fix)/(:<TASK-NO>-)?<SHORT-DESCRIPTION>) , change branch name by this command(git branch -m <newname>). Task Number is optional and can be used from Jira/Github Project Management Tool/Any other Project Management Tool."
+}

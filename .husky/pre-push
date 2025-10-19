@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+. "$(dirname "$0")/_/husky.sh"
+
+node scripts/validate-branch-name.mjs
+RESULT=$?
+if [ $RESULT -ne 0 ]; then
+  exit $RESULT
+fi
