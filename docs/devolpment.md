@@ -59,19 +59,19 @@ A **production-ready foundation** for scalable React apps with modern tooling an
 
 ### 🛠️ Technology Stack
 
-| Category   | Technology      | Purpose                          |
-| ---------- | --------------- | -------------------------------- |
-| Runtime    | Bun             | Fast package manager & scripts   |
-| Build Tool | Vite            | HMR and optimized builds         |
-| Framework  | React 19        | Latest concurrent features       |
-| Language   | TypeScript 5+   | Type safety, DX                  |
-| Router     | TanStack Router | Type-safe file-based routing     |
-| Data       | TanStack Query  | Server-state caching & mutations |
-| Tables     | TanStack Table  | Headless table logic             |
-| Forms      | TanStack Form   | Type-safe form state             |
-| State      | Zustand         | Lightweight global state         |
-| Styling    | Tailwind CSS    | Utility-first styling            |
-| HTTP       | Axios           | HTTP client with interceptors    |
+| Category   | Technology                | Purpose                          |
+| ---------- | --------------------------| -------------------------------- |
+| Runtime    | Bun                       | Fast package manager & scripts   |
+| Build Tool | Vite                      | HMR and optimized builds         |
+| Framework  | React 19                  | Latest concurrent features       |
+| Language   | TypeScript 5+             | Type safety, DX                  |
+| Router     | TanStack Router           | Type-safe file-based routing     |
+| Data       | TanStack Query(Optional)  | Server-state caching & mutations |
+| Tables     | TanStack Table            | Headless table logic             |
+| Forms      | TanStack Form             | Type-safe form state             |
+| State      | Zustand                   | Lightweight global state         |
+| Styling    | Tailwind CSS              | Utility-first styling            |
+| HTTP       | Axios                     | HTTP client with interceptors    |
 
 ---
 
@@ -577,7 +577,7 @@ export function LoginForm() {
 
 ---
 
-## 📊 TanStack Table (Optional)
+## 📊 TanStack Table 
 
 ```tsx
 // src/components/UsersTable.tsx
@@ -881,8 +881,7 @@ labels:
 
 ---
 
-## 💻 Developer Experience *(Optional: keep these in your `.vscode/` folder and reference here)*
-
+## 💻 Developer Experience 
 ### VSCode Settings
 
 ```json
