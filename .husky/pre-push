@@ -1,8 +1,23 @@
-#!/usr/bin/env sh
+#!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-node scripts/validate-branch-name.mjs
-RESULT=$?
-if [ $RESULT -ne 0 ]; then
-  exit $RESULT
+BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+
+# Allowed:
+#   master|main|dev|uat|ppt|upgrade
+#   feature|release|bugfix|hotfix|test|chore|upgrade|fix/<optional :TASK-NO-><kebab>
+# Examples:
+#   feature/:123-add-products
+#   fix/quick-patch
+#   dev
+REGEX='^(master|main|dev|uat|ppt|upgrade|(feature|release|bugfix|hotfix|test|chore|upgrade|fix)/(:[0-9]+-)?[a-zA-Z0-9\-]+)$'
+
+if ! printf "%s" "$BRANCH" | grep -Eq "$REGEX"; then
+  echo "❌ Branch name '$BRANCH' violates policy."
+  echo "Allowed: master|main|dev|uat|ppt|upgrade or <type>/:<TASK-NO-optional>-<desc>"
+  echo "Types: feature|release|bugfix|hotfix|test|chore|upgrade|fix"
+  echo "Example: feature/:123-add-products"
+  exit 1
 fi
+
+exit 0

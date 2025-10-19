@@ -1,8 +1,1 @@
-#!/usr/bin/env sh
-. "$(dirname "$0")/_/husky.sh"
-
-if command -v bunx >/dev/null 2>&1; then
-  bunx --bun commitlint --edit "$1"
-else
-  npx --yes commitlint --edit "$1"
-fi
+bunx --yes commitlint --edit "$1"

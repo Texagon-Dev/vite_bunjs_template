@@ -189,9 +189,9 @@ These conventions ensure maintainability and scalability across Texagon projects
 
 ## 👨‍💻 Credits
 
-**Primary Architect:** [@mtalhazulf](https://github.com/mtalhazulf)
-**Organization:** Texagon
-**Maintainers:** Texagon Engineering Team
+- **Primary Architect:** [@mtalhazulf](https://github.com/mtalhazulf)
+- **Organization:** Texagon
+- **Maintainers:** Texagon Engineering Team
 
 > Designed to accelerate AI-powered and data-driven projects by Texagon.
 > Use this as a starter for all internal and client-facing frontend builds.

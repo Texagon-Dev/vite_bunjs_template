@@ -1,5 +1,4 @@
-// commitlint.config.js
-module.exports = {
+export default {
   extends: ["@commitlint/config-conventional"],
   rules: {
     "type-enum": [
@@ -30,6 +29,5 @@ module.exports = {
     "header-max-length": [2, "always", 72],
 
     "scope-enum": [0],
-    "scope-pattern": [2, "always", "^[a-z0-9\\s\\-\\*()/_]*$"],
   },
 };
