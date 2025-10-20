@@ -15,8 +15,8 @@
 > import { Button, Card, Header } from '@/components';
 > ```
 
-**Primary Architect:** [@mtalhazulf](https://github.com/mtalhazulf)
-**Maintained by:** Texagon Engineering Team
+- **Primary Architect:** [@mtalhazulf](https://github.com/mtalhazulf)
+- **Maintained by:** Texagon Engineering Team
 
 ---
 
