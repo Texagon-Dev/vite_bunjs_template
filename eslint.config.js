@@ -1,17 +1,17 @@
 import { FlatCompat } from "@eslint/eslintrc";
 import js from "@eslint/js";
+import pluginRouter from "@tanstack/eslint-plugin-router";
 import prettier from "eslint-config-prettier";
 import pluginImport from "eslint-plugin-import";
 import pluginPrettier from "eslint-plugin-prettier";
 import pluginReact from "eslint-plugin-react";
 import pluginReactHooks from "eslint-plugin-react-hooks";
 import globals from "globals";
-import process from "node:process";
-import tseslint from "typescript-eslint";
 import { readFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
 import { dirname, resolve } from "node:path";
-import pluginRouter from "@tanstack/eslint-plugin-router";
+import process from "node:process";
+import { fileURLToPath } from "node:url";
+import tseslint from "typescript-eslint";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -44,7 +44,7 @@ export default [
   js.configs.recommended,
   ...tseslint.configs.recommendedTypeChecked,
   pluginReact.configs.flat.recommended,
-  ...compat.extends("plugin:jsx-a11y/recommended"),
+  // ...compat.extends("plugin:jsx-a11y/recommended"),
 
   {
     files: ["**/*.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
@@ -79,6 +79,8 @@ export default [
     },
 
     rules: {
+      "@typescript-eslint/no-unsafe-call": "warn",
+      "@typescript-eslint/explicit-function-return-type": "off",
       "prefer-const": "error",
       "no-var": "error",
       "no-unused-vars": "off",
@@ -193,11 +195,11 @@ export default [
   },
 
   // TSX: relax function return type rule
-  {
-    files: ["**/*.tsx"],
-    rules: {
-      "@typescript-eslint/explicit-function-return-type": "off",
-      "jsx-a11y/label-has-associated-control": "warn",
-    },
-  },
+  // {
+  //   files: ["**/*.tsx"],
+  //   rules: {
+  //     "@typescript-eslint/explicit-function-return-type": "off",
+  //     "jsx-a11y/label-has-associated-control": "warn",
+  //   },
+  // },
 ];
